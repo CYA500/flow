@@ -1,0 +1,53 @@
+name: nowbar
+description: "Now Bar - Samsung One UI 8.5 inspired lock screen overlay with AI-powered capsules"
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+  flutter: ">=3.16.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  
+  # Platform services
+  battery_plus: ^5.0.2
+  geolocator: ^10.1.0
+  connectivity_plus: ^5.0.2
+  shared_preferences: ^2.2.2
+  http: ^1.1.0
+  
+  # UI & Animations
+  lottie: ^3.0.0
+  rive: ^0.12.0
+  
+  # State management
+  flutter_riverpod: ^2.4.9
+  
+  # Utilities
+  intl: ^0.18.1
+  path_provider: ^2.1.1
+  permission_handler: ^11.1.0
+  device_info_plus: ^9.1.1
+  
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/animations/
+    
+  fonts:
+    - family: SamsungOne
+      fonts:
+        - asset: fonts/SamsungOne-Regular.ttf
+        - asset: fonts/SamsungOne-Bold.ttf
+          weight: 700
+        - asset: fonts/SamsungOne-Medium.ttf
+          weight: 500
