@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import '../capsule/capsule_manager.dart';
 
 /// Now Bar Theme - Samsung One UI 8.5 inspired design system
 class NowBarTheme {
@@ -362,6 +363,3 @@ class NowBarTheme {
     }
   }
 }
-
-// Import capsule type from manager
-import '../capsule/capsule_manager.dart';
