@@ -19,7 +19,6 @@ class MusicCapsuleContent extends StatefulWidget {
 
 class _MusicCapsuleContentState extends State<MusicCapsuleContent>
     with SingleTickerProviderStateMixin {
-  final OverlayChannel _overlayChannel = OverlayChannel();
   
   String _title = 'No music playing';
   String _artist = '';
@@ -61,7 +60,7 @@ class _MusicCapsuleContentState extends State<MusicCapsuleContent>
 
   Future<void> _loadMediaInfo() async {
     try {
-      final mediaInfo = await _overlayChannel.getActiveMediaSession();
+      final mediaInfo = await OverlayChannel.getActiveMediaSession();
       if (mediaInfo.isNotEmpty && mounted) {
         setState(() {
           _title = mediaInfo['title'] ?? 'Unknown';
@@ -91,7 +90,7 @@ class _MusicCapsuleContentState extends State<MusicCapsuleContent>
 
   Future<void> _sendMediaCommand(String action) async {
     try {
-      await _overlayChannel.sendMediaCommand(action);
+      await OverlayChannel.sendMediaCommand(action);
       
       if (action == 'play_pause') {
         setState(() {
