@@ -1,7 +1,5 @@
-import 'dart:math' as math;
-import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'capsule/capsule_manager.dart';
 import 'capsule/capsule_widget.dart';
@@ -57,8 +55,7 @@ class NowBarHomeScreen extends ConsumerStatefulWidget {
   ConsumerState<NowBarHomeScreen> createState() => _NowBarHomeScreenState();
 }
 
-class _NowBarHomeScreenState extends ConsumerState<NowBarHomeScreen> {
-  final OverlayChannel _overlayChannel = OverlayChannel();
+class _NowBarHomeScreenState extends ConsumerState<NowBarHomeScreen> 
   bool _hasOverlayPermission = false;
   bool _isServiceRunning = false;
 
@@ -66,12 +63,12 @@ class _NowBarHomeScreenState extends ConsumerState<NowBarHomeScreen> {
   void initState() {
     super.initState();
     _checkPermissions();
-    _overlayChannel.setMethodCallHandler(_handleMethodCall);
+    OverlayChannel.setMethodCallHandler(_handleMethodCall);
   }
 
   Future<void> _checkPermissions() async {
-    final hasPermission = await _overlayChannel.checkOverlayPermission();
-    final isRunning = await _overlayChannel.isNowBarRunning();
+    final hasPermission = await OverlayChannel.checkOverlayPermission();
+    final isRunning = await OverlayChannel.isNowBarRunning();
     if (mounted) {
       setState(() {
         _hasOverlayPermission = hasPermission;
@@ -206,7 +203,7 @@ class _NowBarHomeScreenState extends ConsumerState<NowBarHomeScreen> {
             'Grant Overlay Permission',
             NowBarTheme.warningColor,
             () async {
-              await _overlayChannel.requestOverlayPermission();
+              await OverlayChannel.requestOverlayPermission();
             },
           ),
         const SizedBox(height: 12),
@@ -215,9 +212,9 @@ class _NowBarHomeScreenState extends ConsumerState<NowBarHomeScreen> {
           _isServiceRunning ? NowBarTheme.errorColor : NowBarTheme.primaryBlue,
           () async {
             if (_isServiceRunning) {
-              await _overlayChannel.stopNowBarService();
+              await OverlayChannel.stopNowBarService();
             } else {
-              await _overlayChannel.startNowBarService();
+              await OverlayChannel.startNowBarService();
             }
             await _checkPermissions();
           },
